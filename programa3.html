@@ -4,29 +4,38 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <canvas width="600" height="400">
-        </canvas>
-        <script>
-            var tela = document.querySelector("canvas");
-            var pincel = tela.getContext("2d");
+        <canvas width="600" height="400"></canvas>
 
-            pincel.fillStyle = "grey";
-            pincel.fillRect(0,0,600,400);
+            <script>
 
-            function desenhaCirculo(evento) {
-                var x = evento.pageX - tela.offsetLeft;
-                var y = evento.pageY - tela.offsetTop;
+                var tela = document.querySelector('canvas');
+                var pincel = tela.getContext('2d');
+                pincel.fillStyle = 'lightgray';
+                pincel.fillRect(0, 0, 600, 400);
 
-                pincel.fillStyle="blue";
-                pincel.beginPath();
-                pincel.arc(x, y, 10, 0, 2*3.14);
-                pincel.fill();
+                function desenhaCirculo(x, y, raio) {
 
-                console.log("posição do clique : " + x + ", " + y);
-            }
+                    pincel.fillStyle = 'blue';
+                    pincel.beginPath();
+                    pincel.arc(x, y, raio, 0, 2 * Math.PI);
+                    pincel.fill();
+                }
 
-            // não esqueça de mudar aqui
-            tela.onclick = desenhaCirculo;
-        </script>
+                function limparTela(){
+                    pincel.clearRect(0,0,600,400);
+                }
+
+                var x = 20;
+
+                function atualizaTela(){
+                    limparTela();
+                    desenhaCirculo(x,20,10);
+                    x++;
+                }
+
+                setInterval(atualizaTela,10);
+
+            </script>
     </body>
 </html>
+
